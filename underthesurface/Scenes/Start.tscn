@@ -39,7 +39,7 @@ grow_vertical = 2
 script = ExtResource("1_nt0jr")
 
 
-[node name="Control" type="Control" parent="." unique_id=1640885243]
+[node name="ControlRoot" type="Control" parent="." unique_id=1640885243]
 anchors_preset = 0
 offset_left = -536.0
 offset_top = -80.0
