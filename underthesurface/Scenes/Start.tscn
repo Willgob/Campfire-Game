@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://ylyx13uie0fx"]
+[gd_scene load_steps=12 format=3 uid="uid://ylyx13uie0fx"]
 
 [ext_resource type="Script" uid="uid://detfxpipefuon" path="res://Scenes/start.gd" id="1_nt0jr"]
 [ext_resource type="FontFile" uid="uid://vouwtmcnt61f" path="res://PlayfairDisplay-VariableFont_wght.ttf" id="1_og4jd"]
@@ -33,6 +33,42 @@ corner_radius_top_left = 10
 corner_radius_top_right = 10
 corner_radius_bottom_right = 10
 corner_radius_bottom_left = 10
+
+[sub_resource type="Animation" id="Animation_y4ycm"]
+resource_name = "fade_out"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 0), Color(0, 0, 0, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_1lxxj"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0, 0, 0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_37b1d"]
+_data = {
+&"RESET": SubResource("Animation_1lxxj"),
+&"fade_out": SubResource("Animation_y4ycm")
+}
 
 [node name="Control" type="Control"]
 layout_mode = 3
@@ -89,5 +125,20 @@ offset_top = 81.0
 offset_right = 1083.0
 offset_bottom = 206.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_1lxxj")
+
+[node name="FadeRect" type="ColorRect" parent="."]
+modulate = Color(0, 0, 0, 0)
+layout_mode = 0
+offset_left = -17.0
+offset_right = 1156.0
+offset_bottom = 652.0
+mouse_filter = 2
+color = Color(0.0026177876, 0.0026177883, 0.0026177873, 1)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+root_node = NodePath("../FadeRect")
+libraries = {
+&"": SubResource("AnimationLibrary_37b1d")
+}
 
 [connection signal="pressed" from="Button" to="." method="_on_button_continue_pressed"]
