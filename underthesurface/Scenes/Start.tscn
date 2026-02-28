@@ -1,4 +1,4 @@
-[gd_scene format=3 uid="uid://ylyx13uie0fx"]
+[gd_scene load_steps=13 format=3 uid="uid://ylyx13uie0fx"]
 
 [ext_resource type="Script" uid="uid://detfxpipefuon" path="res://Scenes/start.gd" id="1_nt0jr"]
 [ext_resource type="FontFile" uid="uid://vouwtmcnt61f" path="res://PlayfairDisplay-VariableFont_wght.ttf" id="1_og4jd"]
@@ -8,48 +8,12 @@
 [ext_resource type="Texture2D" uid="uid://cyk48ao6gerfh" path="res://Cave Tileset Pack/PNG files/ParallaxCave3.png" id="6_45hv8"]
 [ext_resource type="Texture2D" uid="uid://dehgamngpvp6a" path="res://Cave Tileset Pack/PNG files/ParallaxCave4.png" id="7_yf7sp"]
 
-[sub_resource type="Animation" id="Animation_1lxxj"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(0, 0, 0, 0)]
-}
-
-[sub_resource type="Animation" id="Animation_y4ycm"]
-resource_name = "fade_out"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Color(0, 0, 0, 0), Color(0, 0, 0, 1)]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_37b1d"]
-_data = {
-&"RESET": SubResource("Animation_1lxxj"),
-&"fade_out": SubResource("Animation_y4ycm")
-}
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_y4ycm"]
-bg_color = Color(0.495784, 0.623354, 0.680385, 1)
-corner_radius_top_left = 25
-corner_radius_top_right = 25
-corner_radius_bottom_right = 25
-corner_radius_bottom_left = 25
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_37b1d"]
+bg_color = Color(0.570785, 0.693675, 0.748483, 1)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lmkek"]
 bg_color = Color(0.723244, 0.814252, 0.853645, 1)
@@ -58,18 +22,18 @@ corner_radius_top_right = 20
 corner_radius_bottom_right = 20
 corner_radius_bottom_left = 20
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_37b1d"]
-bg_color = Color(0.570785, 0.693675, 0.748483, 1)
-corner_radius_top_left = 20
-corner_radius_top_right = 20
-corner_radius_bottom_right = 20
-corner_radius_bottom_left = 20
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_nt0jr"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_y4ycm"]
+bg_color = Color(0.495784, 0.623354, 0.680385, 1)
+corner_radius_top_left = 25
+corner_radius_top_right = 25
+corner_radius_bottom_right = 25
+corner_radius_bottom_left = 25
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_y4ycm"]
 
-[node name="Control" type="Control" unique_id=1809442819]
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_nt0jr"]
+
+[node name="Control" type="Control"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -78,11 +42,10 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_nt0jr")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1913737185]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 root_node = NodePath("../FadeRect")
-libraries/ = SubResource("AnimationLibrary_37b1d")
 
-[node name="FadeRect" type="ColorRect" parent="." unique_id=1029149130]
+[node name="FadeRect" type="ColorRect" parent="."]
 modulate = Color(0, 0, 0, 0)
 z_index = 2
 layout_mode = 0
@@ -92,14 +55,14 @@ offset_bottom = 652.0
 mouse_filter = 2
 color = Color(0.00261779, 0.00261779, 0.00261779, 1)
 
-[node name="Control" type="Control" parent="." unique_id=1640885243]
+[node name="Control" type="Control" parent="."]
 anchors_preset = 0
 offset_left = -536.0
 offset_top = -80.0
 offset_right = 332.0
 offset_bottom = 351.0
 
-[node name="Button" type="Button" parent="Control" unique_id=431085701]
+[node name="Button" type="Button" parent="Control"]
 layout_mode = 0
 offset_left = 286.0
 offset_top = 76.0
@@ -108,12 +71,12 @@ offset_bottom = 106.0
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_fonts/font = ExtResource("1_og4jd")
 theme_override_font_sizes/font_size = 20
-theme_override_styles/normal = SubResource("StyleBoxFlat_y4ycm")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_lmkek")
 theme_override_styles/hover = SubResource("StyleBoxFlat_37b1d")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_lmkek")
+theme_override_styles/normal = SubResource("StyleBoxFlat_y4ycm")
 text = "Start Game"
 
-[node name="Button2" type="Button" parent="Control" unique_id=1156996592]
+[node name="Button2" type="Button" parent="Control"]
 layout_mode = 0
 offset_left = 286.0
 offset_top = 171.0
@@ -122,12 +85,12 @@ offset_bottom = 201.0
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_fonts/font = ExtResource("1_og4jd")
 theme_override_font_sizes/font_size = 20
-theme_override_styles/normal = SubResource("StyleBoxFlat_y4ycm")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_lmkek")
 theme_override_styles/hover = SubResource("StyleBoxFlat_37b1d")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_lmkek")
+theme_override_styles/normal = SubResource("StyleBoxFlat_y4ycm")
 text = "Quit"
 
-[node name="Button3" type="Button" parent="Control" unique_id=2084776012]
+[node name="Button3" type="Button" parent="Control"]
 layout_mode = 0
 offset_left = 285.0
 offset_top = 121.0
@@ -136,20 +99,20 @@ offset_bottom = 151.0
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_fonts/font = ExtResource("1_og4jd")
 theme_override_font_sizes/font_size = 20
-theme_override_styles/normal = SubResource("StyleBoxFlat_y4ycm")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_lmkek")
 theme_override_styles/hover = SubResource("StyleBoxFlat_37b1d")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_lmkek")
+theme_override_styles/normal = SubResource("StyleBoxFlat_y4ycm")
 text = "Options
 "
 
-[node name="Control2" type="Control" parent="." unique_id=171074747]
+[node name="Control2" type="Control" parent="."]
 visible = false
 anchors_preset = 0
 offset_top = -26.0
 offset_right = 1152.0
 offset_bottom = 622.0
 
-[node name="Button" type="Button" parent="Control2" unique_id=2128982655]
+[node name="Button" type="Button" parent="Control2"]
 layout_mode = 0
 offset_left = -258.0
 offset_top = 17.0
@@ -158,12 +121,12 @@ offset_bottom = 47.0
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_fonts/font = ExtResource("1_og4jd")
 theme_override_font_sizes/font_size = 20
-theme_override_styles/normal = SubResource("StyleBoxFlat_y4ycm")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_lmkek")
 theme_override_styles/hover = SubResource("StyleBoxFlat_37b1d")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_lmkek")
+theme_override_styles/normal = SubResource("StyleBoxFlat_y4ycm")
 text = "New Game"
 
-[node name="Button2" type="Button" parent="Control2" unique_id=1447307052]
+[node name="Button2" type="Button" parent="Control2"]
 layout_mode = 0
 offset_left = -258.0
 offset_top = 69.0
@@ -172,12 +135,12 @@ offset_bottom = 99.0
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_fonts/font = ExtResource("1_og4jd")
 theme_override_font_sizes/font_size = 20
-theme_override_styles/normal = SubResource("StyleBoxFlat_y4ycm")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_lmkek")
 theme_override_styles/hover = SubResource("StyleBoxFlat_37b1d")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_lmkek")
+theme_override_styles/normal = SubResource("StyleBoxFlat_y4ycm")
 text = "New Game"
 
-[node name="Button3" type="Button" parent="Control2" unique_id=1453604842]
+[node name="Button3" type="Button" parent="Control2"]
 layout_mode = 0
 offset_left = -258.0
 offset_top = 121.0
@@ -186,13 +149,13 @@ offset_bottom = 151.0
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_fonts/font = ExtResource("1_og4jd")
 theme_override_font_sizes/font_size = 20
-theme_override_styles/normal = SubResource("StyleBoxFlat_y4ycm")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_lmkek")
 theme_override_styles/hover = SubResource("StyleBoxFlat_37b1d")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_lmkek")
+theme_override_styles/normal = SubResource("StyleBoxFlat_y4ycm")
 text = "New Game
 "
 
-[node name="Button4" type="Button" parent="Control2" unique_id=1045548539]
+[node name="Button4" type="Button" parent="Control2"]
 layout_mode = 0
 offset_left = -260.0
 offset_top = 173.0
@@ -201,12 +164,12 @@ offset_bottom = 203.0
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_fonts/font = ExtResource("1_og4jd")
 theme_override_font_sizes/font_size = 20
-theme_override_styles/normal = SubResource("StyleBoxFlat_y4ycm")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_lmkek")
 theme_override_styles/hover = SubResource("StyleBoxFlat_37b1d")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_lmkek")
+theme_override_styles/normal = SubResource("StyleBoxFlat_y4ycm")
 text = "New Game"
 
-[node name="Button5" type="Button" parent="Control2" unique_id=855984400]
+[node name="Button5" type="Button" parent="Control2"]
 layout_mode = 0
 offset_left = 56.0
 offset_top = 16.0
@@ -215,13 +178,13 @@ offset_bottom = 46.0
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_fonts/font = ExtResource("1_og4jd")
 theme_override_font_sizes/font_size = 20
-theme_override_styles/normal = SubResource("StyleBoxEmpty_nt0jr")
-theme_override_styles/pressed = SubResource("StyleBoxEmpty_y4ycm")
 theme_override_styles/hover = SubResource("StyleBoxFlat_37b1d")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_y4ycm")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_nt0jr")
 text = "Clear
 "
 
-[node name="Button6" type="Button" parent="Control2" unique_id=602296277]
+[node name="Button6" type="Button" parent="Control2"]
 layout_mode = 0
 offset_left = 55.0
 offset_top = 67.0
@@ -230,13 +193,13 @@ offset_bottom = 97.0
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_fonts/font = ExtResource("1_og4jd")
 theme_override_font_sizes/font_size = 20
-theme_override_styles/normal = SubResource("StyleBoxEmpty_nt0jr")
-theme_override_styles/pressed = SubResource("StyleBoxEmpty_y4ycm")
 theme_override_styles/hover = SubResource("StyleBoxFlat_37b1d")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_y4ycm")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_nt0jr")
 text = "Clear
 "
 
-[node name="Button7" type="Button" parent="Control2" unique_id=1725629749]
+[node name="Button7" type="Button" parent="Control2"]
 layout_mode = 0
 offset_left = 51.0
 offset_top = 120.0
@@ -245,13 +208,13 @@ offset_bottom = 150.0
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_fonts/font = ExtResource("1_og4jd")
 theme_override_font_sizes/font_size = 20
-theme_override_styles/normal = SubResource("StyleBoxEmpty_nt0jr")
-theme_override_styles/pressed = SubResource("StyleBoxEmpty_y4ycm")
 theme_override_styles/hover = SubResource("StyleBoxFlat_37b1d")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_y4ycm")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_nt0jr")
 text = "Clear
 "
 
-[node name="Button8" type="Button" parent="Control2" unique_id=2057428364]
+[node name="Button8" type="Button" parent="Control2"]
 layout_mode = 0
 offset_left = 50.0
 offset_top = 175.0
@@ -260,13 +223,13 @@ offset_bottom = 205.0
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_fonts/font = ExtResource("1_og4jd")
 theme_override_font_sizes/font_size = 20
-theme_override_styles/normal = SubResource("StyleBoxEmpty_nt0jr")
-theme_override_styles/pressed = SubResource("StyleBoxEmpty_y4ycm")
 theme_override_styles/hover = SubResource("StyleBoxFlat_37b1d")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_y4ycm")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_nt0jr")
 text = "Clear
 "
 
-[node name="Label" type="Label" parent="." unique_id=1797162540]
+[node name="Label" type="Label" parent="."]
 layout_mode = 1
 anchors_preset = -1
 anchor_right = 0.035
@@ -274,21 +237,21 @@ anchor_bottom = 0.034
 offset_left = -250.0
 offset_top = -140.0
 offset_right = 721.68
-offset_bottom = 5.9679985
+offset_bottom = 5.968
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_colors/font_shadow_color = Color(0.439925, 0.593023, 0.63223, 0)
 theme_override_fonts/font = ExtResource("1_og4jd")
 theme_override_font_sizes/font_size = 71
 text = "Surfacing"
 
-[node name="ParallaxBackground" type="ParallaxBackground" parent="." unique_id=1523766379]
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
 
-[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground" unique_id=471913116]
+[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
 position = Vector2(-345, -222)
 motion_scale = Vector2(0.2, 0.2)
 motion_offset = Vector2(0, -200)
 
-[node name="TextureRect" type="TextureRect" parent="ParallaxBackground/ParallaxLayer" unique_id=2025920209]
+[node name="TextureRect" type="TextureRect" parent="ParallaxBackground/ParallaxLayer"]
 offset_left = 185.0
 offset_top = -6.0
 offset_right = 1337.0
@@ -296,36 +259,36 @@ offset_bottom = 1082.0
 texture = ExtResource("4_7aetl")
 metadata/_edit_use_anchors_ = true
 
-[node name="ParallaxLayer2" type="ParallaxLayer" parent="ParallaxBackground" unique_id=2065793954]
+[node name="ParallaxLayer2" type="ParallaxLayer" parent="ParallaxBackground"]
 position = Vector2(-151, -239)
 motion_scale = Vector2(0.4, 0.4)
 motion_offset = Vector2(0, -100)
 
-[node name="TextureRect" type="TextureRect" parent="ParallaxBackground/ParallaxLayer2" unique_id=621870055]
+[node name="TextureRect" type="TextureRect" parent="ParallaxBackground/ParallaxLayer2"]
 offset_right = 1152.0
 offset_bottom = 1088.0
 texture = ExtResource("5_27w08")
 metadata/_edit_use_anchors_ = true
 
-[node name="ParallaxLayer3" type="ParallaxLayer" parent="ParallaxBackground" unique_id=1884492727]
+[node name="ParallaxLayer3" type="ParallaxLayer" parent="ParallaxBackground"]
 z_index = -2
 position = Vector2(-140, -225)
 motion_scale = Vector2(0.1, 0.1)
 motion_offset = Vector2(0, -200)
 
-[node name="TextureRect" type="TextureRect" parent="ParallaxBackground/ParallaxLayer3" unique_id=1377086285]
+[node name="TextureRect" type="TextureRect" parent="ParallaxBackground/ParallaxLayer3"]
 offset_right = 1152.0
 offset_bottom = 1088.0
 texture = ExtResource("6_45hv8")
 metadata/_edit_use_anchors_ = true
 
-[node name="ParallaxLayer4" type="ParallaxLayer" parent="ParallaxBackground" unique_id=605159166]
+[node name="ParallaxLayer4" type="ParallaxLayer" parent="ParallaxBackground"]
 z_index = -2
 position = Vector2(-162, -256)
 motion_scale = Vector2(0.1, 0.1)
 motion_offset = Vector2(0, -200)
 
-[node name="TextureRect" type="TextureRect" parent="ParallaxBackground/ParallaxLayer4" unique_id=1013193680]
+[node name="TextureRect" type="TextureRect" parent="ParallaxBackground/ParallaxLayer4"]
 z_index = -2
 offset_left = -11.0
 offset_top = 42.0
@@ -334,7 +297,7 @@ offset_bottom = 1130.0
 texture = ExtResource("7_yf7sp")
 metadata/_edit_use_anchors_ = true
 
-[node name="Camera2D" type="Camera2D" parent="." unique_id=1556538709]
+[node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(453, 314)
 zoom = Vector2(1.6, 1.6)
 position_smoothing_enabled = true
