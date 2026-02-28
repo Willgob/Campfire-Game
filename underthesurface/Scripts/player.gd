@@ -201,57 +201,44 @@ func _start_grapple():
 # =========================
 func _process_swing(delta):
 
-	# -----------------------------
-	# Pendulum physics
-	# -----------------------------
-	var angular_acceleration = -(GRAVITY / swing_radius) * sin(swing_angle)
-
-	angular_velocity += angular_acceleration * delta
-	angular_velocity *= SWING_DAMPING
-	swing_angle += angular_velocity * delta
-
-	# Tangent direction
-	var tangent = Vector2(
-		-sin(swing_angle),
-		cos(swing_angle)
-	)
-
-	# Convert angular motion to linear velocity
-	velocity = tangent * (angular_velocity * swing_radius)
-
-	# -----------------------------
-	# MOVE WITH COLLISION
-	# -----------------------------
-	move_and_slide()
-
-	# -----------------------------
-	# Rope constraint (SAFE)
-	# -----------------------------
+	# Vector from grapple to player
 	var rope_vec = global_position - grapple_point
 	var dist = rope_vec.length()
 
-	if dist > 0:
-		var rope_dir = rope_vec / dist
-
-		# Snap back to rope radius
-		global_position = grapple_point + rope_dir * swing_radius
-
-		# Remove radial velocity (prevents pushing through walls)
-		var radial_velocity = velocity.dot(rope_dir)
-		velocity -= rope_dir * radial_velocity
-
-	# -----------------------------
-	# Auto release
-	# -----------------------------
-	var angle_diff = wrapf(swing_angle - swing_start_angle, -PI, PI)
-	if abs(rad_to_deg(angle_diff)) >= AUTO_RELEASE_ANGLE:
-		_release_swing()
+	if dist == 0:
 		return
 
+	var rope_dir = rope_vec / dist
+
+	# ---------------------------------
+	# Apply gravity
+	# ---------------------------------
+	velocity.y += GRAVITY * delta
+
+	# ---------------------------------
+	# Remove radial velocity
+	# (prevents moving toward/away from grapple)
+	# ---------------------------------
+	var radial_velocity = velocity.dot(rope_dir)
+	velocity -= rope_dir * radial_velocity
+
+	# ---------------------------------
+	# Rope tension: if stretched, pull inward
+	# ---------------------------------
+	if dist > swing_radius:
+		var correction = (dist - swing_radius)
+		global_position -= rope_dir * correction
+
+	# ---------------------------------
+	# Move with collisions
+	# ---------------------------------
+	move_and_slide()
+
+	# ---------------------------------
 	# Manual release
+	# ---------------------------------
 	if Input.is_action_just_pressed("move_jump"):
 		_release_swing()
-
 
 func _release_swing():
 	is_swinging = false

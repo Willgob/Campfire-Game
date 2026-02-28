@@ -11,8 +11,8 @@ config_version=5
 [application]
 
 config/name="underthesurface"
-run/main_scene="uid://ylyx13uie0fx"
-config/features=PackedStringArray("4.5", "Forward Plus")
+run/main_scene="uid://uvfocqg4licr"
+config/features=PackedStringArray("4.4", "Forward Plus")
 config/icon="res://icon.svg"
 
 [input]
