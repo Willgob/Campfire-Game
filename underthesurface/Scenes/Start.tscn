@@ -1,8 +1,70 @@
-[gd_scene load_steps=12 format=3 uid="uid://ylyx13uie0fx"]
+<<<<<<< Updated upstream
+[gd_scene load_steps=9 format=3 uid="uid://ylyx13uie0fx"]
 
 [ext_resource type="Script" uid="uid://detfxpipefuon" path="res://Scenes/start.gd" id="1_nt0jr"]
 [ext_resource type="FontFile" uid="uid://vouwtmcnt61f" path="res://PlayfairDisplay-VariableFont_wght.ttf" id="1_og4jd"]
 [ext_resource type="Texture2D" uid="uid://dl8uvoiai52xp" path="res://titlebackground.jpg" id="3_y4ycm"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_37b1d"]
+bg_color = Color(0.570785, 0.693675, 0.748483, 1)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lmkek"]
+bg_color = Color(0.723244, 0.814252, 0.853645, 1)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+=======
+[gd_scene format=3 uid="uid://ylyx13uie0fx"]
+
+[ext_resource type="Script" uid="uid://detfxpipefuon" path="res://Scenes/start.gd" id="1_nt0jr"]
+[ext_resource type="FontFile" uid="uid://vouwtmcnt61f" path="res://PlayfairDisplay-VariableFont_wght.ttf" id="1_og4jd"]
+[ext_resource type="Script" uid="uid://c7u45xhusc4kj" path="res://Scripts/background.gd" id="3_035le"]
+[ext_resource type="Texture2D" uid="uid://bderbc14ebprs" path="res://Cave Tileset Pack/PNG files/ParallaxCave2.png" id="4_7aetl"]
+[ext_resource type="Texture2D" uid="uid://babwyubr1x4qn" path="res://Cave Tileset Pack/PNG files/ParallaxCave1.png" id="5_27w08"]
+[ext_resource type="Texture2D" uid="uid://cyk48ao6gerfh" path="res://Cave Tileset Pack/PNG files/ParallaxCave3.png" id="6_45hv8"]
+[ext_resource type="Texture2D" uid="uid://dehgamngpvp6a" path="res://Cave Tileset Pack/PNG files/ParallaxCave4.png" id="7_yf7sp"]
+
+[sub_resource type="Animation" id="Animation_1lxxj"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0, 0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_y4ycm"]
+resource_name = "fade_out"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 0), Color(0, 0, 0, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_37b1d"]
+_data = {
+&"RESET": SubResource("Animation_1lxxj"),
+&"fade_out": SubResource("Animation_y4ycm")
+}
+>>>>>>> Stashed changes
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_y4ycm"]
 bg_color = Color(0.495784, 0.623354, 0.680385, 1)
@@ -11,6 +73,18 @@ corner_radius_top_right = 25
 corner_radius_bottom_right = 25
 corner_radius_bottom_left = 25
 
+<<<<<<< Updated upstream
+[sub_resource type="Theme" id="Theme_1lxxj"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1lxxj"]
+bg_color = Color(0.314348, 0.453146, 0.496206, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[node name="Control" type="Control"]
+=======
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lmkek"]
 bg_color = Color(0.723244, 0.814252, 0.853645, 1)
 corner_radius_top_left = 20
@@ -30,6 +104,7 @@ corner_radius_bottom_left = 20
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_y4ycm"]
 
 [node name="Control" type="Control" unique_id=1809442819]
+>>>>>>> Stashed changes
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -38,8 +113,56 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_nt0jr")
 
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1913737185]
+root_node = NodePath("../FadeRect")
+libraries/ = SubResource("AnimationLibrary_37b1d")
 
-[node name="ControlRoot" type="Control" parent="." unique_id=1640885243]
+<<<<<<< Updated upstream
+[node name="Button" type="Button" parent="."]
+layout_mode = 0
+offset_left = 350.0
+offset_top = 300.0
+offset_right = 872.0
+offset_bottom = 432.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("1_og4jd")
+theme_override_font_sizes/font_size = 50
+theme_override_styles/hover = SubResource("StyleBoxFlat_37b1d")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_lmkek")
+theme_override_styles/normal = SubResource("StyleBoxFlat_y4ycm")
+text = "Continue"
+
+[node name="TextureRect" type="TextureRect" parent="."]
+z_index = -3
+layout_mode = 0
+offset_right = 1147.0
+offset_bottom = 650.0
+mouse_filter = 2
+theme = SubResource("Theme_1lxxj")
+texture = ExtResource("3_y4ycm")
+
+[node name="Panel" type="Panel" parent="."]
+z_index = -1
+layout_mode = 0
+offset_left = 51.0
+offset_top = 81.0
+offset_right = 1083.0
+offset_bottom = 206.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_1lxxj")
+
+[connection signal="pressed" from="Button" to="." method="_on_button_continue_pressed"]
+=======
+[node name="FadeRect" type="ColorRect" parent="." unique_id=1029149130]
+modulate = Color(0, 0, 0, 0)
+z_index = 2
+layout_mode = 0
+offset_left = -17.0
+offset_right = 1156.0
+offset_bottom = 652.0
+mouse_filter = 2
+color = Color(0.00261779, 0.00261779, 0.00261779, 1)
+
+[node name="Control" type="Control" parent="." unique_id=1640885243]
 anchors_preset = 0
 offset_left = -536.0
 offset_top = -80.0
@@ -290,3 +413,4 @@ script = ExtResource("3_035le")
 [connection signal="pressed" from="Control/Button" to="." method="_on_button_continue_pressed"]
 [connection signal="pressed" from="Control/Button2" to="." method="_on_button_2_pressed"]
 [connection signal="pressed" from="Control2/Button" to="." method="_on_button_pressed"]
+>>>>>>> Stashed changes
