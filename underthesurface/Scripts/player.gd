@@ -50,7 +50,7 @@ var swing_start_angle = 0.0
 
 func die():
 	$AudioStreamPlayer2D.play()
-	global_position = Vector2(400,200)
+	global_position = Vector2(330,200)
 
 # =========================
 func _physics_process(delta):
