@@ -4,21 +4,6 @@
 [ext_resource type="FontFile" uid="uid://vouwtmcnt61f" path="res://PlayfairDisplay-VariableFont_wght.ttf" id="1_og4jd"]
 [ext_resource type="Texture2D" uid="uid://dl8uvoiai52xp" path="res://titlebackground.jpg" id="3_y4ycm"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_37b1d"]
-bg_color = Color(0.570785, 0.693675, 0.748483, 1)
-corner_radius_top_left = 20
-corner_radius_top_right = 20
-corner_radius_bottom_right = 20
-corner_radius_bottom_left = 20
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lmkek"]
-bg_color = Color(0.723244, 0.814252, 0.853645, 1)
-corner_radius_top_left = 20
-corner_radius_top_right = 20
-corner_radius_bottom_right = 20
-corner_radius_bottom_left = 20
-
-
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_y4ycm"]
 bg_color = Color(0.495784, 0.623354, 0.680385, 1)
 corner_radius_top_left = 25
