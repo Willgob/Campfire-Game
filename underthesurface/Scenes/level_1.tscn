@@ -1,38 +1,32 @@
-[gd_scene load_steps=6 format=3 uid="uid://uvfocqg4licr"]
+[gd_scene load_steps=5 format=4 uid="uid://uvfocqg4licr"]
 
 [ext_resource type="Script" uid="uid://c5e7tng8l5usa" path="res://Scripts/player.gd" id="1_8ffim"]
 [ext_resource type="Texture2D" uid="uid://nsq0rfh2rl8e" path="res://icon.svg" id="1_vk57k"]
+[ext_resource type="TileSet" uid="uid://bsayemo15upof" path="res://tileset1.tres" id="3_xfk5q"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8ffim"]
-size = Vector2(18.5, 55.5)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_xfk5q"]
-size = Vector2(664, 20)
-
-[sub_resource type="TileSet" id="TileSet_8ffim"]
+size = Vector2(6.74683, 21.9965)
 
 [node name="Level1" type="Node2D"]
 
 [node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(601, 316)
+position = Vector2(341, 440)
+zoom = Vector2(2, 2)
 
 [node name="CharacterBody2D" type="CharacterBody2D" parent="."]
+position = Vector2(15, -24)
+scale = Vector2(1.08325, 0.892842)
 script = ExtResource("1_8ffim")
 
 [node name="Sprite2D" type="Sprite2D" parent="CharacterBody2D"]
-position = Vector2(216, 436)
-scale = Vector2(0.253906, 0.4375)
+position = Vector2(191.839, 471.124)
+scale = Vector2(0.112656, 0.186192)
 texture = ExtResource("1_vk57k")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
-position = Vector2(215.75, 436.25)
+position = Vector2(191.664, 471.326)
 shape = SubResource("RectangleShape2D_8ffim")
 
-[node name="StaticBody2D" type="StaticBody2D" parent="."]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2(415, 481)
-shape = SubResource("RectangleShape2D_xfk5q")
-
 [node name="TileMapLayer" type="TileMapLayer" parent="."]
-tile_set = SubResource("TileSet_8ffim")
+tile_map_data = PackedByteArray("AAAQABoAAAAEAAEAAAAQABsAAAAEAAIAAAAQABwAAAAEAAMAAAANABoAAAABAAEAAAANABsAAAABAAIAAAANABwAAAABAAMAAAANAB0AAAABAAgAAAAOABoAAAACAAEAAAAOABsAAAACAAIAAAAOABwAAAACAAMAAAAOAB0AAAACAAcAABAPABoAAAADAAEAAAAPABsAAAADAAIAAAAPABwAAAADAAMAAAAPAB0AAAADAAgAAAAMABkAAAAAAAAAAAAMABoAAAAAAAEAAAANABkAAAABAAAAAAAOABkAAAACAAAAAAAPABkAAAADAAAAAAAQABkAAAAEAAAAAAAMABsAAAAAAAIAAAAMABwAAAAEAAcAABAMAB0AAAAAAAgAAAAMAB4AAAAEAAcAABANAB4AAAABAAMAAAAOAB4AAAACAAcAAAAPAB4AAAACAAcAABAQAB0AAAAEAAgAAAAQAB4AAAAEAAcAAAAMAB8AAAAAAAgAAAAMACAAAAAAAAMAAAANAB8AAAACAAcAACANACAAAAABAAMAAAAOAB8AAAACAAgAAAAOACAAAAACAAMAAAAPAB8AAAADAAgAAAAPACAAAAADAAMAAAAQAB8AAAAEAAcAAAAQACAAAAAEAAMAAAA=")
+tile_set = ExtResource("3_xfk5q")
