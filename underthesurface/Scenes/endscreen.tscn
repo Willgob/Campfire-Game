@@ -1,0 +1,58 @@
+[gd_scene load_steps=3 format=3 uid="uid://d0sna83q881gv"]
+
+[ext_resource type="FontFile" uid="uid://vouwtmcnt61f" path="res://PlayfairDisplay-VariableFont_wght.ttf" id="1_uv0vl"]
+[ext_resource type="Script" uid="uid://brtp3xohk8xvs" path="res://Scripts/return.gd" id="2_6njhj"]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="ColorRect2" type="ColorRect" parent="CanvasLayer"]
+offset_left = -26.0
+offset_top = -12.0
+offset_right = 1159.0
+offset_bottom = 664.0
+color = Color(0, 0, 0, 1)
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+offset_left = -13.0
+offset_top = -6.0
+offset_right = 1172.0
+offset_bottom = 670.0
+color = Color(0, 0, 0, 1)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="CanvasLayer"]
+
+[node name="Label" type="Label" parent="CanvasLayer"]
+offset_left = 251.0
+offset_top = 274.0
+offset_right = 896.0
+offset_bottom = 342.0
+scale = Vector2(1.00533, 1)
+theme_override_fonts/font = ExtResource("1_uv0vl")
+theme_override_font_sizes/font_size = 50
+text = "C O N G R A T U L A T I O N S"
+
+[node name="Button" type="Button" parent="CanvasLayer"]
+offset_left = 537.0
+offset_top = 413.0
+offset_right = 596.0
+offset_bottom = 444.0
+scale = Vector2(1.00533, 1)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("1_uv0vl")
+text = "Return
+"
+script = ExtResource("2_6njhj")
+
+[node name="Label2" type="Label" parent="CanvasLayer"]
+offset_left = 484.0
+offset_top = 362.0
+offset_right = 651.0
+offset_bottom = 390.0
+scale = Vector2(1.00533, 1)
+theme_override_fonts/font = ExtResource("1_uv0vl")
+theme_override_font_sizes/font_size = 20
+text = "Thanks for playing"
+
+[connection signal="pressed" from="CanvasLayer/Button" to="CanvasLayer/Button" method="_on_pressed"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=4 uid="uid://uvfocqg4licr"]
+[gd_scene load_steps=23 format=4 uid="uid://uvfocqg4licr"]
 
 [ext_resource type="Script" uid="uid://c5e7tng8l5usa" path="res://Scripts/player.gd" id="1_8ffim"]
 [ext_resource type="Script" uid="uid://b53e8jwwc3srj" path="res://Scripts/timer.gd" id="1_evi0p"]
@@ -15,9 +15,33 @@
 [ext_resource type="Texture2D" uid="uid://bderbc14ebprs" path="res://Cave Tileset Pack/PNG files/ParallaxCave2.png" id="10_6ioyp"]
 [ext_resource type="Texture2D" uid="uid://cyk48ao6gerfh" path="res://Cave Tileset Pack/PNG files/ParallaxCave3.png" id="11_oovug"]
 [ext_resource type="Texture2D" uid="uid://dehgamngpvp6a" path="res://Cave Tileset Pack/PNG files/ParallaxCave4.png" id="12_8i23i"]
+[ext_resource type="FontFile" uid="uid://vouwtmcnt61f" path="res://PlayfairDisplay-VariableFont_wght.ttf" id="16_8i23i"]
+[ext_resource type="Script" uid="uid://pub2umbenkep" path="res://Scripts/pause.gd" id="16_pjppf"]
+[ext_resource type="Material" uid="uid://bmu045j7ys4xy" path="res://blur.tres" id="17_8yhm2"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8ffim"]
 size = Vector2(13.2744, 43.3685)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8i23i"]
+bg_color = Color(0.570785, 0.693675, 0.748483, 1)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8yhm2"]
+bg_color = Color(0.723244, 0.814252, 0.853645, 1)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pjppf"]
+bg_color = Color(0.495784, 0.623354, 0.680385, 1)
+corner_radius_top_left = 25
+corner_radius_top_right = 25
+corner_radius_bottom_right = 25
+corner_radius_bottom_left = 25
 
 [node name="Level1" type="Node2D"]
 metadata/_edit_horizontal_guides_ = [263.0, 354.0]
@@ -196,4 +220,71 @@ position = Vector2(136, 384)
 rotation = -0.00191418
 polygon = PackedVector2Array(24, 12, 40, -5, 92, -6, 97, 16, 123, 21, 146.073, -37.7205, 249.135, -70.5233, 268.097, -50.4869, 305.164, -85.416, 317.151, -78.3931, 338.074, -38.3529, 369.063, -32.2936, 382.07, -36.2687, 428, -16, 708.083, -42.6447, 736.136, -70.591, 762.98, 11.4605, 768.92, 42.4719, 815.888, 59.5619, 828.794, 108.587, 23, 92)
 
+[node name="Pause" type="CanvasLayer" parent="."]
+layer = 2
+visible = false
+script = ExtResource("16_pjppf")
+
+[node name="Control" type="Control" parent="Pause"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Button" type="Button" parent="Pause/Control"]
+offset_left = 485.845
+offset_top = 221.0
+offset_right = 635.845
+offset_bottom = 251.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("16_8i23i")
+theme_override_font_sizes/font_size = 20
+theme_override_styles/hover = SubResource("StyleBoxFlat_8i23i")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_8yhm2")
+theme_override_styles/normal = SubResource("StyleBoxFlat_pjppf")
+text = "Resume"
+
+[node name="Button2" type="Button" parent="Pause/Control"]
+offset_left = 483.0
+offset_top = 348.791
+offset_right = 633.0
+offset_bottom = 378.791
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("16_8i23i")
+theme_override_font_sizes/font_size = 20
+theme_override_styles/hover = SubResource("StyleBoxFlat_8i23i")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_8yhm2")
+theme_override_styles/normal = SubResource("StyleBoxFlat_pjppf")
+text = "Quit"
+
+[node name="Button3" type="Button" parent="Pause/Control"]
+offset_left = 484.422
+offset_top = 285.613
+offset_right = 634.422
+offset_bottom = 315.613
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("16_8i23i")
+theme_override_font_sizes/font_size = 20
+theme_override_styles/hover = SubResource("StyleBoxFlat_8i23i")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_8yhm2")
+theme_override_styles/normal = SubResource("StyleBoxFlat_pjppf")
+text = "Options
+"
+
+[node name="TextureRect" type="TextureRect" parent="Pause"]
+z_index = 2
+material = ExtResource("17_8yhm2")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 3.0
+offset_top = 5.0
+offset_right = 3.0
+offset_bottom = 5.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1.42238, 1.43585)
+
 [connection signal="body_entered" from="Deathzone" to="Deathzone" method="_on_body_entered"]
+[connection signal="pressed" from="Pause/Control/Button" to="Pause" method="_on_button_pressed"]
+[connection signal="pressed" from="Pause/Control/Button3" to="Pause" method="_on_button_3_pressed"]
