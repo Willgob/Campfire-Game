@@ -38,9 +38,6 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_nt0jr")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1913737185]
-root_node = NodePath("../FadeRect")
-libraries/ = SubResource("AnimationLibrary_37b1d")
 
 [node name="FadeRect" type="ColorRect" parent="." unique_id=1029149130]
 modulate = Color(0, 0, 0, 0)
