@@ -24,9 +24,27 @@ var has_double_jumped = false
 var dash_timer = 0.0
 var dash_cooldown_timer = 0.0
 var is_dashing = false
+	
+@onready var fade = get_tree().root.get_node("Level1/CanvasLayer/Fade")
+
+
+func die():
+	$AudioStreamPlayer2D.play()
+	
+	 # Disable player control
+	set_physics_process(false)
+	set_process_input(false)
+
+	await get_tree().create_timer(1.0).timeout
+	# Respawn
+	global_position = Vector2(15, -23) # your respawn point 
+
+	# Re-enable control
+	set_physics_process(true)
+	set_process_input(true)
 
 func _physics_process(delta):
-	# Dash cooldown
+	# Dash Cooldown
 	if dash_cooldown_timer > 0:
 		dash_cooldown_timer -= delta
 
