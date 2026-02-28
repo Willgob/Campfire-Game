@@ -288,4 +288,4 @@ func _draw():
 
 
 func _on_winzone_area_entered(area: Area2D) -> void:
-	pass # Replace with function body.
+	get_tree().change_scene_to_file("res://Scenes/endscreen.tscn")
