@@ -1,0 +1,7 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://bmu045j7ys4xy"]
+
+[ext_resource type="Shader" uid="uid://b14kfkjdibcho" path="res://blur.gdshader" id="1_fc23q"]
+
+[resource]
+shader = ExtResource("1_fc23q")
+shader_parameter/radius = 4.0

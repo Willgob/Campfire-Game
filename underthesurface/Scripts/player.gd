@@ -285,3 +285,7 @@ func _release_swing():
 func _draw():
 	draw_line(to_local(debug_from), to_local(debug_to), Color.YELLOW, 2)
 	draw_circle(to_local(grapple_point), 4, Color.RED)
+
+
+func _on_winzone_area_entered(area: Area2D) -> void:
+	pass # Replace with function body.
