@@ -91,6 +91,10 @@ func _physics_process(delta):
 
 	if not is_dashing:
 		velocity.x = dir * SPEED
+		if is_on_floor():
+			$AnimatedSprite2D.play("run")
+		if dir == -1:
+			$AnimatedSprite2D.flip_h
 
 	# ---------------------------------
 	# JUMP
