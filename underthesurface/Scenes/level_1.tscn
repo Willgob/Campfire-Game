@@ -1,6 +1,7 @@
-[gd_scene load_steps=7 format=4 uid="uid://uvfocqg4licr"]
+[gd_scene load_steps=8 format=4 uid="uid://uvfocqg4licr"]
 
 [ext_resource type="Script" uid="uid://c5e7tng8l5usa" path="res://Scripts/player.gd" id="1_8ffim"]
+[ext_resource type="Script" uid="uid://b53e8jwwc3srj" path="res://Scripts/timer.gd" id="1_evi0p"]
 [ext_resource type="Texture2D" uid="uid://nsq0rfh2rl8e" path="res://icon.svg" id="1_vk57k"]
 [ext_resource type="AudioStream" uid="uid://p7xp4l5ap7xn" path="res://death.wav" id="3_6444e"]
 [ext_resource type="TileSet" uid="uid://bsayemo15upof" path="res://tileset1.tres" id="3_xfk5q"]
@@ -11,6 +12,26 @@ size = Vector2(6.74683, 21.9965)
 
 [node name="Level1" type="Node2D"]
 metadata/_edit_horizontal_guides_ = [263.0]
+
+[node name="HUD" type="CanvasLayer" parent="."]
+script = ExtResource("1_evi0p")
+
+[node name="Label" type="Label" parent="HUD"]
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -536.0
+offset_top = -283.0
+offset_right = -496.0
+offset_bottom = -260.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "0"
+
+[node name="Timer" type="Timer" parent="HUD"]
+autostart = true
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 layer = 8

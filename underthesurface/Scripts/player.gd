@@ -21,6 +21,7 @@ const DASH_COOLDOWN = 0.8
 # --- GRAPPLE ---
 const GRAPPLE_LENGTH = 400
 const AUTO_RELEASE_ANGLE = 135.0
+const SWING_DAMPING = 0.995   # lower = loses energy faster
 
 # =========================
 # VARIABLES
@@ -36,20 +37,13 @@ var is_dashing = false
 var dash_timer = 0.0
 var dash_cooldown_timer = 0.0
 
+# --- SWING ---
 var is_swinging = false
 var grapple_point = Vector2.ZERO
 var swing_radius = 0.0
+var swing_angle = 0.0
+var angular_velocity = 0.0
 var swing_start_angle = 0.0
-
-# Debug
-var debug_grapple_from = Vector2.ZERO
-var debug_grapple_to = Vector2.ZERO
-var show_debug_grapple = false
-
-# =========================
-func _ready():
-	pass
-
 
 # =========================
 func _physics_process(delta):
@@ -68,12 +62,10 @@ func _physics_process(delta):
 		dash_cooldown_timer -= delta
 
 	# ---------------------------------
-	# GRAPPLE START
+	# GRAPPLE START (mouse aimed)
 	# ---------------------------------
 	if Input.is_action_just_pressed("move_grapple") \
-	and not is_on_floor() \
 	and not is_swinging:
-
 		_start_grapple()
 
 	# ---------------------------------
@@ -97,10 +89,8 @@ func _physics_process(delta):
 	# JUMP
 	# ---------------------------------
 	if Input.is_action_just_pressed("move_jump"):
-
 		if is_on_floor():
 			_start_jump()
-
 		elif not has_double_jumped:
 			_start_double_jump()
 
@@ -111,13 +101,11 @@ func _physics_process(delta):
 	# ---------------------------------
 	if Input.is_action_just_pressed("move_dash") \
 	and dash_cooldown_timer <= 0:
-
 		_start_dash()
 
 	if is_dashing:
 		velocity.x = facing_dir * DASH_SPEED
 		dash_timer -= delta
-
 		if dash_timer <= 0:
 			is_dashing = false
 
@@ -130,11 +118,9 @@ func _physics_process(delta):
 		has_double_jumped = false
 		is_dashing = false
 
-	queue_redraw()
-
 
 # =========================
-# JUMP HELPERS
+# JUMP
 # =========================
 func _start_jump():
 	velocity.y = JUMP_FORCE
@@ -179,17 +165,15 @@ func _start_dash():
 
 
 # =========================
-# GRAPPLE
+# GRAPPLE START
 # =========================
 func _start_grapple():
 
-	debug_grapple_from = global_position
-	debug_grapple_to = global_position + Vector2(facing_dir * GRAPPLE_LENGTH, -120)
-	show_debug_grapple = true
-
 	var space = get_world_2d().direct_space_state
 	var from = global_position
-	var to = debug_grapple_to
+	var mouse_pos = get_global_mouse_position()
+	var direction = (mouse_pos - from).normalized()
+	var to = from + direction * GRAPPLE_LENGTH
 
 	var query = PhysicsRayQueryParameters2D.create(from, to)
 	query.exclude = [self]
@@ -198,74 +182,78 @@ func _start_grapple():
 	var result = space.intersect_ray(query)
 
 	if result:
-
 		grapple_point = result.position
-		var rope_vec = global_position - grapple_point
 
+		var rope_vec = global_position - grapple_point
 		swing_radius = max(rope_vec.length(), 60.0)
-		swing_start_angle = atan2(rope_vec.y, rope_vec.x)
+
+		swing_angle = atan2(rope_vec.y, rope_vec.x)
+		swing_start_angle = swing_angle
+
+		var tangent = Vector2(-rope_vec.y, rope_vec.x).normalized()
+		angular_velocity = velocity.dot(tangent) / swing_radius
 
 		is_swinging = true
-		# IMPORTANT: keep current velocity so swing has momentum
-		# (removed: velocity = Vector2.ZERO)
-
-	show_debug_grapple = false
 
 
 # =========================
-# SWING PROCESS
+# SWING PHYSICS
 # =========================
 func _process_swing(delta):
-	# Vector from grapple point to player
+
+	# -----------------------------
+	# Pendulum physics
+	# -----------------------------
+	var angular_acceleration = -(GRAVITY / swing_radius) * sin(swing_angle)
+
+	angular_velocity += angular_acceleration * delta
+	angular_velocity *= SWING_DAMPING
+	swing_angle += angular_velocity * delta
+
+	# Tangent direction
+	var tangent = Vector2(
+		-sin(swing_angle),
+		cos(swing_angle)
+	)
+
+	# Convert angular motion to linear velocity
+	velocity = tangent * (angular_velocity * swing_radius)
+
+	# -----------------------------
+	# MOVE WITH COLLISION
+	# -----------------------------
+	move_and_slide()
+
+	# -----------------------------
+	# Rope constraint (SAFE)
+	# -----------------------------
 	var rope_vec = global_position - grapple_point
-	var rope_dir = rope_vec.normalized()
+	var dist = rope_vec.length()
 
-	# Tangent vector for swinging (90° rotated)
-	var tangent = Vector2(-rope_dir.y, rope_dir.x)
+	if dist > 0:
+		var rope_dir = rope_vec / dist
 
-	# Proper gravity projection along tangent
-	var gravity_vec = Vector2(0, GRAVITY)
-	var gravity_tangent = gravity_vec.dot(tangent)
-	velocity += gravity_tangent * tangent * delta
+		# Snap back to rope radius
+		global_position = grapple_point + rope_dir * swing_radius
 
-	# If we're completely still, give a tiny nudge so it doesn't "stick"
-	if velocity.length() < 5.0:
-		velocity += tangent * 20.0 * delta
+		# Remove radial velocity (prevents pushing through walls)
+		var radial_velocity = velocity.dot(rope_dir)
+		velocity -= rope_dir * radial_velocity
 
-	# Update position along tangent
-	global_position += velocity * delta
-
-	# Constrain to rope radius
-	rope_vec = global_position - grapple_point
-	global_position = grapple_point + rope_vec.normalized() * swing_radius
-
-	# Remove radial velocity (toward/away from grapple)
-	var radial_velocity = velocity.dot(rope_vec.normalized())
-	velocity -= rope_vec.normalized() * radial_velocity
-
-	# Track swing angle for auto-release
-	var current_angle = atan2(rope_vec.y, rope_vec.x)
-	var angle_diff = wrapf(current_angle - swing_start_angle, -PI, PI)
-
+	# -----------------------------
+	# Auto release
+	# -----------------------------
+	var angle_diff = wrapf(swing_angle - swing_start_angle, -PI, PI)
 	if abs(rad_to_deg(angle_diff)) >= AUTO_RELEASE_ANGLE:
-		is_swinging = false
+		_release_swing()
 		return
 
-	# Jump release
+	# Manual release
 	if Input.is_action_just_pressed("move_jump"):
-		is_swinging = false
-		velocity = tangent * velocity.length() + Vector2(0, JUMP_FORCE)
-		has_double_jumped = true
+		_release_swing()
 
 
-# =========================
-# DEBUG DRAW
-# =========================
-func _draw():
-	if show_debug_grapple:
-		draw_line(
-			to_local(debug_grapple_from),
-			to_local(debug_grapple_to),
-			Color.RED,
-			2.0
-		)
+func _release_swing():
+	is_swinging = false
+	has_double_jumped = true
+	# momentum already preserved in velocity
