@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://ylyx13uie0fx"]
+[gd_scene load_steps=12 format=3 uid="uid://ylyx13uie0fx"]
 
 [ext_resource type="Script" uid="uid://detfxpipefuon" path="res://Scenes/start.gd" id="1_nt0jr"]
 [ext_resource type="FontFile" uid="uid://vouwtmcnt61f" path="res://PlayfairDisplay-VariableFont_wght.ttf" id="1_og4jd"]
@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://babwyubr1x4qn" path="res://Cave Tileset Pack/PNG files/ParallaxCave1.png" id="5_27w08"]
 [ext_resource type="Texture2D" uid="uid://cyk48ao6gerfh" path="res://Cave Tileset Pack/PNG files/ParallaxCave3.png" id="6_45hv8"]
 [ext_resource type="Texture2D" uid="uid://dehgamngpvp6a" path="res://Cave Tileset Pack/PNG files/ParallaxCave4.png" id="7_yf7sp"]
+[ext_resource type="Texture2D" uid="uid://dslc246yqra21" path="res://bsod.jpg" id="8_7aetl"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_37b1d"]
 bg_color = Color(0.570785, 0.693675, 0.748483, 1)
@@ -28,10 +29,6 @@ corner_radius_top_left = 25
 corner_radius_top_right = 25
 corner_radius_bottom_right = 25
 corner_radius_bottom_left = 25
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_y4ycm"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_nt0jr"]
 
 [node name="Control" type="Control"]
 layout_mode = 3
@@ -78,10 +75,10 @@ text = "Start Game"
 
 [node name="Button2" type="Button" parent="Control"]
 layout_mode = 0
-offset_left = 286.0
-offset_top = 171.0
-offset_right = 436.0
-offset_bottom = 201.0
+offset_left = 284.0
+offset_top = 165.0
+offset_right = 434.0
+offset_bottom = 195.0
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_fonts/font = ExtResource("1_og4jd")
 theme_override_font_sizes/font_size = 20
@@ -103,130 +100,6 @@ theme_override_styles/hover = SubResource("StyleBoxFlat_37b1d")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_lmkek")
 theme_override_styles/normal = SubResource("StyleBoxFlat_y4ycm")
 text = "Options
-"
-
-[node name="Control2" type="Control" parent="."]
-visible = false
-anchors_preset = 0
-offset_top = -26.0
-offset_right = 1152.0
-offset_bottom = 622.0
-
-[node name="Button" type="Button" parent="Control2"]
-layout_mode = 0
-offset_left = -258.0
-offset_top = 17.0
-offset_right = 23.0
-offset_bottom = 47.0
-theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_fonts/font = ExtResource("1_og4jd")
-theme_override_font_sizes/font_size = 20
-theme_override_styles/hover = SubResource("StyleBoxFlat_37b1d")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_lmkek")
-theme_override_styles/normal = SubResource("StyleBoxFlat_y4ycm")
-text = "New Game"
-
-[node name="Button2" type="Button" parent="Control2"]
-layout_mode = 0
-offset_left = -258.0
-offset_top = 69.0
-offset_right = 25.0
-offset_bottom = 99.0
-theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_fonts/font = ExtResource("1_og4jd")
-theme_override_font_sizes/font_size = 20
-theme_override_styles/hover = SubResource("StyleBoxFlat_37b1d")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_lmkek")
-theme_override_styles/normal = SubResource("StyleBoxFlat_y4ycm")
-text = "New Game"
-
-[node name="Button3" type="Button" parent="Control2"]
-layout_mode = 0
-offset_left = -258.0
-offset_top = 121.0
-offset_right = 25.0
-offset_bottom = 151.0
-theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_fonts/font = ExtResource("1_og4jd")
-theme_override_font_sizes/font_size = 20
-theme_override_styles/hover = SubResource("StyleBoxFlat_37b1d")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_lmkek")
-theme_override_styles/normal = SubResource("StyleBoxFlat_y4ycm")
-text = "New Game
-"
-
-[node name="Button4" type="Button" parent="Control2"]
-layout_mode = 0
-offset_left = -260.0
-offset_top = 173.0
-offset_right = 24.0
-offset_bottom = 203.0
-theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_fonts/font = ExtResource("1_og4jd")
-theme_override_font_sizes/font_size = 20
-theme_override_styles/hover = SubResource("StyleBoxFlat_37b1d")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_lmkek")
-theme_override_styles/normal = SubResource("StyleBoxFlat_y4ycm")
-text = "New Game"
-
-[node name="Button5" type="Button" parent="Control2"]
-layout_mode = 0
-offset_left = 56.0
-offset_top = 16.0
-offset_right = 127.0
-offset_bottom = 46.0
-theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_fonts/font = ExtResource("1_og4jd")
-theme_override_font_sizes/font_size = 20
-theme_override_styles/hover = SubResource("StyleBoxFlat_37b1d")
-theme_override_styles/pressed = SubResource("StyleBoxEmpty_y4ycm")
-theme_override_styles/normal = SubResource("StyleBoxEmpty_nt0jr")
-text = "Clear
-"
-
-[node name="Button6" type="Button" parent="Control2"]
-layout_mode = 0
-offset_left = 55.0
-offset_top = 67.0
-offset_right = 128.0
-offset_bottom = 97.0
-theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_fonts/font = ExtResource("1_og4jd")
-theme_override_font_sizes/font_size = 20
-theme_override_styles/hover = SubResource("StyleBoxFlat_37b1d")
-theme_override_styles/pressed = SubResource("StyleBoxEmpty_y4ycm")
-theme_override_styles/normal = SubResource("StyleBoxEmpty_nt0jr")
-text = "Clear
-"
-
-[node name="Button7" type="Button" parent="Control2"]
-layout_mode = 0
-offset_left = 51.0
-offset_top = 120.0
-offset_right = 130.0
-offset_bottom = 150.0
-theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_fonts/font = ExtResource("1_og4jd")
-theme_override_font_sizes/font_size = 20
-theme_override_styles/hover = SubResource("StyleBoxFlat_37b1d")
-theme_override_styles/pressed = SubResource("StyleBoxEmpty_y4ycm")
-theme_override_styles/normal = SubResource("StyleBoxEmpty_nt0jr")
-text = "Clear
-"
-
-[node name="Button8" type="Button" parent="Control2"]
-layout_mode = 0
-offset_left = 50.0
-offset_top = 175.0
-offset_right = 130.0
-offset_bottom = 205.0
-theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_fonts/font = ExtResource("1_og4jd")
-theme_override_font_sizes/font_size = 20
-theme_override_styles/hover = SubResource("StyleBoxFlat_37b1d")
-theme_override_styles/pressed = SubResource("StyleBoxEmpty_y4ycm")
-theme_override_styles/normal = SubResource("StyleBoxEmpty_nt0jr")
-text = "Clear
 "
 
 [node name="Label" type="Label" parent="."]
@@ -252,15 +125,15 @@ motion_scale = Vector2(0.2, 0.2)
 motion_offset = Vector2(0, -200)
 
 [node name="TextureRect" type="TextureRect" parent="ParallaxBackground/ParallaxLayer"]
-offset_left = 185.0
-offset_top = -6.0
-offset_right = 1337.0
-offset_bottom = 1082.0
+offset_left = 181.0
+offset_top = -22.0
+offset_right = 1333.0
+offset_bottom = 1066.0
 texture = ExtResource("4_7aetl")
 metadata/_edit_use_anchors_ = true
 
 [node name="ParallaxLayer2" type="ParallaxLayer" parent="ParallaxBackground"]
-position = Vector2(-151, -239)
+position = Vector2(-193, -237)
 motion_scale = Vector2(0.4, 0.4)
 motion_offset = Vector2(0, -100)
 
@@ -272,13 +145,15 @@ metadata/_edit_use_anchors_ = true
 
 [node name="ParallaxLayer3" type="ParallaxLayer" parent="ParallaxBackground"]
 z_index = -2
-position = Vector2(-140, -225)
+position = Vector2(-186, -220)
 motion_scale = Vector2(0.1, 0.1)
 motion_offset = Vector2(0, -200)
 
 [node name="TextureRect" type="TextureRect" parent="ParallaxBackground/ParallaxLayer3"]
-offset_right = 1152.0
-offset_bottom = 1088.0
+offset_left = 7.0
+offset_top = -2.0
+offset_right = 1159.0
+offset_bottom = 1086.0
 texture = ExtResource("6_45hv8")
 metadata/_edit_use_anchors_ = true
 
@@ -303,6 +178,65 @@ zoom = Vector2(1.6, 1.6)
 position_smoothing_enabled = true
 script = ExtResource("3_035le")
 
+[node name="Control2" type="Control" parent="."]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_left = -536.0
+offset_top = -80.0
+offset_right = 332.0
+offset_bottom = 351.0
+
+[node name="No" type="Button" parent="Control2"]
+layout_mode = 0
+offset_left = 285.0
+offset_top = 165.0
+offset_right = 435.0
+offset_bottom = 195.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("1_og4jd")
+theme_override_font_sizes/font_size = 20
+theme_override_styles/hover = SubResource("StyleBoxFlat_37b1d")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_lmkek")
+theme_override_styles/normal = SubResource("StyleBoxFlat_y4ycm")
+text = "No"
+
+[node name="Yes" type="Button" parent="Control2"]
+layout_mode = 0
+offset_left = 285.0
+offset_top = 121.0
+offset_right = 435.0
+offset_bottom = 151.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("1_og4jd")
+theme_override_font_sizes/font_size = 20
+theme_override_styles/hover = SubResource("StyleBoxFlat_37b1d")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_lmkek")
+theme_override_styles/normal = SubResource("StyleBoxFlat_y4ycm")
+text = "Yes
+"
+
+[node name="Label" type="Label" parent="Control2"]
+layout_mode = 0
+offset_left = 289.0
+offset_top = 76.0
+offset_right = 560.0
+offset_bottom = 104.0
+theme_override_fonts/font = ExtResource("1_og4jd")
+theme_override_font_sizes/font_size = 20
+text = "Are you sure you want to quit?"
+
+[node name="TextureRect" type="TextureRect" parent="."]
+visible = false
+layout_mode = 0
+offset_left = -342.0
+offset_top = -199.0
+offset_right = 658.0
+offset_bottom = 363.0
+scale = Vector2(0.70412, 0.70412)
+texture = ExtResource("8_7aetl")
+
 [connection signal="pressed" from="Control/Button" to="." method="_on_button_continue_pressed"]
 [connection signal="pressed" from="Control/Button2" to="." method="_on_button_2_pressed"]
-[connection signal="pressed" from="Control2/Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="Control2/No" to="." method="_on_no_pressed"]
+[connection signal="pressed" from="Control2/Yes" to="." method="_on_yes_pressed"]
