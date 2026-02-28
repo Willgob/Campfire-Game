@@ -18,51 +18,6 @@ corner_radius_top_right = 20
 corner_radius_bottom_right = 20
 corner_radius_bottom_left = 20
 
-[gd_scene format=3 uid="uid://ylyx13uie0fx"]
-
-[ext_resource type="Script" uid="uid://detfxpipefuon" path="res://Scenes/start.gd" id="1_nt0jr"]
-[ext_resource type="FontFile" uid="uid://vouwtmcnt61f" path="res://PlayfairDisplay-VariableFont_wght.ttf" id="1_og4jd"]
-[ext_resource type="Script" uid="uid://c7u45xhusc4kj" path="res://Scripts/background.gd" id="3_035le"]
-[ext_resource type="Texture2D" uid="uid://bderbc14ebprs" path="res://Cave Tileset Pack/PNG files/ParallaxCave2.png" id="4_7aetl"]
-[ext_resource type="Texture2D" uid="uid://babwyubr1x4qn" path="res://Cave Tileset Pack/PNG files/ParallaxCave1.png" id="5_27w08"]
-[ext_resource type="Texture2D" uid="uid://cyk48ao6gerfh" path="res://Cave Tileset Pack/PNG files/ParallaxCave3.png" id="6_45hv8"]
-[ext_resource type="Texture2D" uid="uid://dehgamngpvp6a" path="res://Cave Tileset Pack/PNG files/ParallaxCave4.png" id="7_yf7sp"]
-
-[sub_resource type="Animation" id="Animation_1lxxj"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(0, 0, 0, 0)]
-}
-
-[sub_resource type="Animation" id="Animation_y4ycm"]
-resource_name = "fade_out"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Color(0, 0, 0, 0), Color(0, 0, 0, 1)]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_37b1d"]
-_data = {
-&"RESET": SubResource("Animation_1lxxj"),
-&"fade_out": SubResource("Animation_y4ycm")
-}
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_y4ycm"]
 bg_color = Color(0.495784, 0.623354, 0.680385, 1)
