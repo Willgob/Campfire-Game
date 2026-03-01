@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=4 uid="uid://uvfocqg4licr"]
+[gd_scene load_steps=25 format=4 uid="uid://uvfocqg4licr"]
 
 [ext_resource type="Script" uid="uid://c5e7tng8l5usa" path="res://Scripts/player.gd" id="1_8ffim"]
 [ext_resource type="Script" uid="uid://b53e8jwwc3srj" path="res://Scripts/timer.gd" id="1_evi0p"]
@@ -18,6 +18,7 @@
 [ext_resource type="FontFile" uid="uid://vouwtmcnt61f" path="res://PlayfairDisplay-VariableFont_wght.ttf" id="16_8i23i"]
 [ext_resource type="Script" uid="uid://pub2umbenkep" path="res://Scripts/pause.gd" id="16_pjppf"]
 [ext_resource type="Material" uid="uid://bmu045j7ys4xy" path="res://blur.tres" id="17_8yhm2"]
+[ext_resource type="Script" uid="uid://c8wnaspejot7" path="res://Scenes/winzone.gd" id="19_yltlr"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8ffim"]
 size = Vector2(13.2744, 43.3685)
@@ -289,6 +290,7 @@ grow_vertical = 2
 scale = Vector2(1.42238, 1.43585)
 
 [node name="Winzone" type="Area2D" parent="."]
+script = ExtResource("19_yltlr")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Winzone"]
 position = Vector2(1328, -46)
@@ -297,4 +299,5 @@ shape = SubResource("RectangleShape2D_pjppf")
 [connection signal="body_entered" from="Deathzone" to="Deathzone" method="_on_body_entered"]
 [connection signal="pressed" from="Pause/Control/Button" to="Pause" method="_on_button_pressed"]
 [connection signal="pressed" from="Pause/Control/Button3" to="Pause" method="_on_button_3_pressed"]
-[connection signal="area_entered" from="Winzone" to="Player" method="_on_winzone_area_entered"]
+[connection signal="area_entered" from="Winzone" to="Winzone" method="_on_area_entered"]
+[connection signal="body_entered" from="Winzone" to="Winzone" method="_on_body_entered"]
