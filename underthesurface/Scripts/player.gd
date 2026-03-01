@@ -52,10 +52,8 @@ var was_on_floor = false
 
 
 func die():
-	$AnimatedSprite2D.play("death")
 	$AudioStreamPlayer2D.play()
-	global_position = Vector2(330,200)
-
+	global_position = Vector2(240,480)
 
 # =========================
 func _physics_process(delta):
@@ -197,7 +195,6 @@ func _start_dash():
 # GRAPPLE START
 # =========================
 func _start_grapple():
-
 	var space = get_world_2d().direct_space_state
 	var from = global_position + Vector2(0, -4)
 
@@ -210,10 +207,6 @@ func _start_grapple():
 	var direction = raw_dir.normalized()
 	var to = from + direction * GRAPPLE_LENGTH
 
-	debug_from = from
-	debug_to = to
-	queue_redraw()
-
 	var query = PhysicsRayQueryParameters2D.create(from, to)
 	query.exclude = [self]
 	query.collision_mask = 0xFFFFFFFF
@@ -224,6 +217,16 @@ func _start_grapple():
 		grapple_point = result.position
 		swing_radius = (global_position - grapple_point).length()
 		is_swinging = true
+
+		# enable rope drawing
+		debug_from = global_position
+		debug_to = grapple_point
+		queue_redraw()
+	else:
+		# MISS → clear rope completely
+		debug_from = Vector2.ZERO
+		debug_to = Vector2.ZERO
+		queue_redraw()
 
 
 # =========================
@@ -257,6 +260,11 @@ func _process_swing(delta):
 		radial_velocity = velocity.dot(rope_dir)
 		velocity -= rope_dir * radial_velocity
 
+	# Update rope debug while swinging
+	debug_from = global_position
+	debug_to = grapple_point
+	queue_redraw()
+
 	if Input.is_action_just_pressed("move_jump"):
 		_release_swing()
 
@@ -264,6 +272,11 @@ func _process_swing(delta):
 func _release_swing():
 	is_swinging = false
 	has_double_jumped = true
+
+	# Clear rope
+	debug_from = Vector2.ZERO
+	debug_to = Vector2.ZERO
+	queue_redraw()
 
 
 # =========================
@@ -294,5 +307,9 @@ func _update_animation():
 # DEBUG DRAW
 # =========================
 func _draw():
-	draw_line(to_local(debug_from), to_local(debug_to), Color.YELLOW, 2)
-	draw_circle(to_local(grapple_point), 4, Color.RED)
+	if is_swinging:
+		# Rope from player to grapple point
+		draw_line(to_local(global_position), to_local(grapple_point), Color.YELLOW, 2)
+	else:
+		# Raycast debug
+		draw_line(to_local(debug_from), to_local(debug_to), Color.YELLOW, 2)

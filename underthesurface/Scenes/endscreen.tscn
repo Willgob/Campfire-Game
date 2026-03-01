@@ -1,29 +1,46 @@
-[gd_scene load_steps=3 format=3 uid="uid://d0sna83q881gv"]
+[gd_scene load_steps=4 format=3 uid="uid://d0sna83q881gv"]
 
+[ext_resource type="Script" path="res://Scenes/endscreen.gd" id="1_6njhj"]
 [ext_resource type="FontFile" uid="uid://vouwtmcnt61f" path="res://PlayfairDisplay-VariableFont_wght.ttf" id="1_uv0vl"]
 [ext_resource type="Script" uid="uid://brtp3xohk8xvs" path="res://Scripts/return.gd" id="2_6njhj"]
 
 [node name="Node2D" type="Node2D"]
+script = ExtResource("1_6njhj")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="ColorRect3" type="ColorRect" parent="CanvasLayer"]
+modulate = Color(0, 0, 0, 1)
+z_index = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -86.0
+offset_top = -45.0
+offset_right = -86.0
+offset_bottom = -45.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1.2, 1.2)
+mouse_filter = 2
+color = Color(0, 0, 0, 1)
 
 [node name="ColorRect2" type="ColorRect" parent="CanvasLayer"]
 offset_left = -26.0
 offset_top = -12.0
 offset_right = 1159.0
 offset_bottom = 664.0
-color = Color(0, 0, 0, 1)
+color = Color(0.43134, 0.43134, 0.43134, 1)
 
 [node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
 offset_left = -13.0
 offset_top = -6.0
 offset_right = 1172.0
 offset_bottom = 670.0
-color = Color(0, 0, 0, 1)
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="CanvasLayer"]
+color = Color(0.360949, 0.360949, 0.360949, 1)
 
 [node name="Label" type="Label" parent="CanvasLayer"]
+modulate = Color(1, 1, 1, 0)
 offset_left = 251.0
 offset_top = 274.0
 offset_right = 896.0
@@ -34,9 +51,10 @@ theme_override_font_sizes/font_size = 50
 text = "C O N G R A T U L A T I O N S"
 
 [node name="Button" type="Button" parent="CanvasLayer"]
-offset_left = 537.0
+modulate = Color(1, 1, 1, 0)
+offset_left = 534.0
 offset_top = 413.0
-offset_right = 596.0
+offset_right = 593.0
 offset_bottom = 444.0
 scale = Vector2(1.00533, 1)
 theme_override_colors/font_color = Color(1, 1, 1, 1)
@@ -46,6 +64,7 @@ text = "Return
 script = ExtResource("2_6njhj")
 
 [node name="Label2" type="Label" parent="CanvasLayer"]
+modulate = Color(1, 1, 1, 0)
 offset_left = 484.0
 offset_top = 362.0
 offset_right = 651.0
@@ -54,5 +73,8 @@ scale = Vector2(1.00533, 1)
 theme_override_fonts/font = ExtResource("1_uv0vl")
 theme_override_font_sizes/font_size = 20
 text = "Thanks for playing"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+root_node = NodePath("../CanvasLayer")
 
 [connection signal="pressed" from="CanvasLayer/Button" to="CanvasLayer/Button" method="_on_pressed"]
