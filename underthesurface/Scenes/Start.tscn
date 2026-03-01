@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://ylyx13uie0fx"]
+[gd_scene format=3 uid="uid://ylyx13uie0fx"]
 
 [ext_resource type="Script" uid="uid://detfxpipefuon" path="res://Scenes/start.gd" id="1_nt0jr"]
 [ext_resource type="FontFile" uid="uid://vouwtmcnt61f" path="res://PlayfairDisplay-VariableFont_wght.ttf" id="1_og4jd"]
@@ -9,12 +9,12 @@
 [ext_resource type="Texture2D" uid="uid://dehgamngpvp6a" path="res://Cave Tileset Pack/PNG files/ParallaxCave4.png" id="7_yf7sp"]
 [ext_resource type="Texture2D" uid="uid://dslc246yqra21" path="res://bsod.jpg" id="8_7aetl"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_37b1d"]
-bg_color = Color(0.570785, 0.693675, 0.748483, 1)
-corner_radius_top_left = 20
-corner_radius_top_right = 20
-corner_radius_bottom_right = 20
-corner_radius_bottom_left = 20
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_y4ycm"]
+bg_color = Color(0.495784, 0.623354, 0.680385, 1)
+corner_radius_top_left = 25
+corner_radius_top_right = 25
+corner_radius_bottom_right = 25
+corner_radius_bottom_left = 25
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lmkek"]
 bg_color = Color(0.723244, 0.814252, 0.853645, 1)
@@ -23,14 +23,14 @@ corner_radius_top_right = 20
 corner_radius_bottom_right = 20
 corner_radius_bottom_left = 20
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_y4ycm"]
-bg_color = Color(0.495784, 0.623354, 0.680385, 1)
-corner_radius_top_left = 25
-corner_radius_top_right = 25
-corner_radius_bottom_right = 25
-corner_radius_bottom_left = 25
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_37b1d"]
+bg_color = Color(0.570785, 0.693675, 0.748483, 1)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
 
-[node name="Control" type="Control"]
+[node name="Control" type="Control" unique_id=1206259683]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -39,10 +39,10 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_nt0jr")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=107370738]
 root_node = NodePath("../FadeRect")
 
-[node name="FadeRect" type="ColorRect" parent="."]
+[node name="FadeRect" type="ColorRect" parent="." unique_id=1510301902]
 modulate = Color(0, 0, 0, 0)
 z_index = 2
 layout_mode = 0
@@ -52,14 +52,14 @@ offset_bottom = 652.0
 mouse_filter = 2
 color = Color(0.00261779, 0.00261779, 0.00261779, 1)
 
-[node name="Control" type="Control" parent="."]
+[node name="Control" type="Control" parent="." unique_id=1392110454]
 anchors_preset = 0
 offset_left = -536.0
 offset_top = -80.0
 offset_right = 332.0
 offset_bottom = 351.0
 
-[node name="Button" type="Button" parent="Control"]
+[node name="Button" type="Button" parent="Control" unique_id=1616179445]
 layout_mode = 0
 offset_left = 286.0
 offset_top = 76.0
@@ -68,12 +68,12 @@ offset_bottom = 106.0
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_fonts/font = ExtResource("1_og4jd")
 theme_override_font_sizes/font_size = 20
-theme_override_styles/hover = SubResource("StyleBoxFlat_37b1d")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_lmkek")
 theme_override_styles/normal = SubResource("StyleBoxFlat_y4ycm")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_lmkek")
+theme_override_styles/hover = SubResource("StyleBoxFlat_37b1d")
 text = "Start Game"
 
-[node name="Button2" type="Button" parent="Control"]
+[node name="Button2" type="Button" parent="Control" unique_id=264425338]
 layout_mode = 0
 offset_left = 284.0
 offset_top = 165.0
@@ -82,12 +82,12 @@ offset_bottom = 195.0
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_fonts/font = ExtResource("1_og4jd")
 theme_override_font_sizes/font_size = 20
-theme_override_styles/hover = SubResource("StyleBoxFlat_37b1d")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_lmkek")
 theme_override_styles/normal = SubResource("StyleBoxFlat_y4ycm")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_lmkek")
+theme_override_styles/hover = SubResource("StyleBoxFlat_37b1d")
 text = "Quit"
 
-[node name="Button3" type="Button" parent="Control"]
+[node name="Button3" type="Button" parent="Control" unique_id=986078107]
 layout_mode = 0
 offset_left = 285.0
 offset_top = 121.0
@@ -96,13 +96,13 @@ offset_bottom = 151.0
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_fonts/font = ExtResource("1_og4jd")
 theme_override_font_sizes/font_size = 20
-theme_override_styles/hover = SubResource("StyleBoxFlat_37b1d")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_lmkek")
 theme_override_styles/normal = SubResource("StyleBoxFlat_y4ycm")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_lmkek")
+theme_override_styles/hover = SubResource("StyleBoxFlat_37b1d")
 text = "Options
 "
 
-[node name="Label" type="Label" parent="."]
+[node name="Label" type="Label" parent="." unique_id=1930557333]
 layout_mode = 1
 anchors_preset = -1
 anchor_right = 0.035
@@ -117,14 +117,14 @@ theme_override_fonts/font = ExtResource("1_og4jd")
 theme_override_font_sizes/font_size = 71
 text = "Surfacing"
 
-[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+[node name="ParallaxBackground" type="ParallaxBackground" parent="." unique_id=623950136]
 
-[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
+[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground" unique_id=895858740]
 position = Vector2(-345, -222)
 motion_scale = Vector2(0.2, 0.2)
 motion_offset = Vector2(0, -200)
 
-[node name="TextureRect" type="TextureRect" parent="ParallaxBackground/ParallaxLayer"]
+[node name="TextureRect" type="TextureRect" parent="ParallaxBackground/ParallaxLayer" unique_id=1940262154]
 offset_left = 181.0
 offset_top = -22.0
 offset_right = 1333.0
@@ -132,24 +132,24 @@ offset_bottom = 1066.0
 texture = ExtResource("4_7aetl")
 metadata/_edit_use_anchors_ = true
 
-[node name="ParallaxLayer2" type="ParallaxLayer" parent="ParallaxBackground"]
+[node name="ParallaxLayer2" type="ParallaxLayer" parent="ParallaxBackground" unique_id=16435525]
 position = Vector2(-193, -237)
 motion_scale = Vector2(0.4, 0.4)
 motion_offset = Vector2(0, -100)
 
-[node name="TextureRect" type="TextureRect" parent="ParallaxBackground/ParallaxLayer2"]
+[node name="TextureRect" type="TextureRect" parent="ParallaxBackground/ParallaxLayer2" unique_id=317994767]
 offset_right = 1152.0
 offset_bottom = 1088.0
 texture = ExtResource("5_27w08")
 metadata/_edit_use_anchors_ = true
 
-[node name="ParallaxLayer3" type="ParallaxLayer" parent="ParallaxBackground"]
+[node name="ParallaxLayer3" type="ParallaxLayer" parent="ParallaxBackground" unique_id=706152988]
 z_index = -2
 position = Vector2(-186, -220)
 motion_scale = Vector2(0.1, 0.1)
 motion_offset = Vector2(0, -200)
 
-[node name="TextureRect" type="TextureRect" parent="ParallaxBackground/ParallaxLayer3"]
+[node name="TextureRect" type="TextureRect" parent="ParallaxBackground/ParallaxLayer3" unique_id=1183230712]
 offset_left = 7.0
 offset_top = -2.0
 offset_right = 1159.0
@@ -157,13 +157,13 @@ offset_bottom = 1086.0
 texture = ExtResource("6_45hv8")
 metadata/_edit_use_anchors_ = true
 
-[node name="ParallaxLayer4" type="ParallaxLayer" parent="ParallaxBackground"]
+[node name="ParallaxLayer4" type="ParallaxLayer" parent="ParallaxBackground" unique_id=587251198]
 z_index = -2
 position = Vector2(-162, -256)
 motion_scale = Vector2(0.1, 0.1)
 motion_offset = Vector2(0, -200)
 
-[node name="TextureRect" type="TextureRect" parent="ParallaxBackground/ParallaxLayer4"]
+[node name="TextureRect" type="TextureRect" parent="ParallaxBackground/ParallaxLayer4" unique_id=1931660078]
 z_index = -2
 offset_left = -11.0
 offset_top = 42.0
@@ -172,22 +172,21 @@ offset_bottom = 1130.0
 texture = ExtResource("7_yf7sp")
 metadata/_edit_use_anchors_ = true
 
-[node name="Camera2D" type="Camera2D" parent="."]
+[node name="Camera2D" type="Camera2D" parent="." unique_id=855806471]
 position = Vector2(453, 314)
 zoom = Vector2(1.6, 1.6)
 position_smoothing_enabled = true
 script = ExtResource("3_035le")
 
-[node name="Control2" type="Control" parent="."]
+[node name="Control2" type="Control" parent="." unique_id=1798767504]
 visible = false
-layout_mode = 3
 anchors_preset = 0
 offset_left = -536.0
 offset_top = -80.0
 offset_right = 332.0
 offset_bottom = 351.0
 
-[node name="No" type="Button" parent="Control2"]
+[node name="No" type="Button" parent="Control2" unique_id=843303981]
 layout_mode = 0
 offset_left = 285.0
 offset_top = 165.0
@@ -196,12 +195,12 @@ offset_bottom = 195.0
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_fonts/font = ExtResource("1_og4jd")
 theme_override_font_sizes/font_size = 20
-theme_override_styles/hover = SubResource("StyleBoxFlat_37b1d")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_lmkek")
 theme_override_styles/normal = SubResource("StyleBoxFlat_y4ycm")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_lmkek")
+theme_override_styles/hover = SubResource("StyleBoxFlat_37b1d")
 text = "No"
 
-[node name="Yes" type="Button" parent="Control2"]
+[node name="Yes" type="Button" parent="Control2" unique_id=861781225]
 layout_mode = 0
 offset_left = 285.0
 offset_top = 121.0
@@ -210,13 +209,13 @@ offset_bottom = 151.0
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_fonts/font = ExtResource("1_og4jd")
 theme_override_font_sizes/font_size = 20
-theme_override_styles/hover = SubResource("StyleBoxFlat_37b1d")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_lmkek")
 theme_override_styles/normal = SubResource("StyleBoxFlat_y4ycm")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_lmkek")
+theme_override_styles/hover = SubResource("StyleBoxFlat_37b1d")
 text = "Yes
 "
 
-[node name="Label" type="Label" parent="Control2"]
+[node name="Label" type="Label" parent="Control2" unique_id=1601572474]
 layout_mode = 0
 offset_left = 289.0
 offset_top = 76.0
@@ -226,7 +225,7 @@ theme_override_fonts/font = ExtResource("1_og4jd")
 theme_override_font_sizes/font_size = 20
 text = "Are you sure you want to quit?"
 
-[node name="TextureRect" type="TextureRect" parent="."]
+[node name="TextureRect" type="TextureRect" parent="." unique_id=1840696795]
 visible = false
 layout_mode = 0
 offset_left = -342.0
