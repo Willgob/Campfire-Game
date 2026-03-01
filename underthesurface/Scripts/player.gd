@@ -326,7 +326,7 @@ func _update_animation():
 func _draw():
 	if is_swinging:
 		# Rope from player to grapple point
-		draw_line(to_local(global_position), to_local(grapple_point), Color.YELLOW, 2)
+		draw_line(to_local(global_position), to_local(grapple_point), Color.SKY_BLUE, 1)
 	else:
 		# Raycast debug
-		draw_line(to_local(debug_from), to_local(debug_to), Color.YELLOW, 2)
+		draw_line(to_local(debug_from), to_local(debug_to), Color.SKY_BLUE, 1)
