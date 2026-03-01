@@ -1,0 +1,147 @@
+[gd_scene load_steps=6 format=3 uid="uid://c164q6aemxrlr"]
+
+[ext_resource type="Script" uid="uid://2prtfde83xb4" path="res://endscreen.gd" id="1_uv0vl"]
+[ext_resource type="FontFile" uid="uid://vouwtmcnt61f" path="res://PlayfairDisplay-VariableFont_wght.ttf" id="2_6njhj"]
+
+[sub_resource type="Animation" id="Animation_qp57f"]
+resource_name = "fade_in"
+length = 10.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Label:theme_override_colors/font_color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(1.4, 2.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Label2:theme_override_colors/font_color")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(3.86667, 4.66667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Button:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(6.66667, 7.56667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_gna3x"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Label:theme_override_colors/font_color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Label2:theme_override_colors/font_color")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Button:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_hcuwu"]
+_data = {
+&"RESET": SubResource("Animation_gna3x"),
+&"fade_in": SubResource("Animation_qp57f")
+}
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_uv0vl")
+
+[node name="Button" type="Button" parent="."]
+modulate = Color(1, 1, 1, 0)
+z_index = 1
+layout_mode = 0
+offset_left = 534.0
+offset_top = 329.0
+offset_right = 624.0
+offset_bottom = 360.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("2_6njhj")
+text = "Return"
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 0
+offset_left = -4.0
+offset_top = -21.0
+offset_right = 1165.0
+offset_bottom = 663.0
+color = Color(0, 0, 0, 1)
+
+[node name="Label2" type="Label" parent="."]
+offset_left = 510.0
+offset_top = 300.0
+offset_right = 644.0
+offset_bottom = 323.0
+theme_override_colors/font_color = Color(1, 1, 1, 0)
+theme_override_fonts/font = ExtResource("2_6njhj")
+theme_override_font_sizes/font_size = 16
+text = "Thanks for playing"
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_left = 259.0
+offset_top = 210.0
+offset_right = 904.0
+offset_bottom = 278.0
+theme_override_colors/font_color = Color(1, 1, 1, 0)
+theme_override_fonts/font = ExtResource("2_6njhj")
+theme_override_font_sizes/font_size = 50
+text = "C O N G R A T U L A T I O N S"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_hcuwu")
+}
+
+[connection signal="ready" from="." to="." method="_on_ready"]
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

@@ -53,7 +53,24 @@ var was_on_floor = false
 
 func die():
 	$AudioStreamPlayer2D.play()
-	global_position = Vector2(240,480)
+	global_position = Vector2(240, 480)
+
+	# --- RESET SWING STATE ---
+	is_swinging = false
+	grapple_point = Vector2.ZERO
+	swing_radius = 0.0
+	angular_velocity = 0.0
+	swing_angle = 0.0
+
+	# Clear rope visuals
+	debug_from = Vector2.ZERO
+	debug_to = Vector2.ZERO
+	queue_redraw()
+
+	# Reset jump/dash states too (optional but safer)
+	is_jumping = false
+	has_double_jumped = false
+	is_dashing = false
 
 # =========================
 func _physics_process(delta):

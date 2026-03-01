@@ -21,3 +21,35 @@ func _on_yes_pressed() -> void:
 func _on_no_pressed() -> void:
 	$Control2.hide()
 	$Control.show()
+
+
+func _on_tree_entered() -> void:
+	$AnimationPlayer.play("fade_in")
+	await $AnimationPlayer.animation_finished
+	$ColorRect.hide()
+
+func _on_finish_pressed() -> void:
+	$Options2.hide()
+	$Options.hide()
+	$Control.show()
+
+func _on_back_2_pressed() -> void:
+	$Options2.hide()
+	$Options.show()
+	$Control.hide()
+
+func _on_next_pressed() -> void:
+	$Options.hide()
+	$Options2.show()
+	$Control.hide()
+
+func _on_back_pressed() -> void:
+	$Options.hide()
+	$Options2.hide()
+	$Control.show()
+
+
+func _on_button_3_pressed() -> void:
+	$Options.show()
+	$Options2.hide()
+	$Control.hide()

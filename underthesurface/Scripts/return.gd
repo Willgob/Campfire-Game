@@ -1,4 +1,4 @@
 extends Button
 
 func _on_pressed() -> void:
-	$Animationplayer.play()
+	get_tree().change_scene_to_file("res://Scenes/Start.tscn")
