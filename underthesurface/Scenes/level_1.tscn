@@ -82,7 +82,7 @@ offset_bottom = 659.0
 color = Color(0, 0, 0, 0)
 
 [node name="Player" type="CharacterBody2D" parent="." groups=["player"]]
-position = Vector2(225, 393)
+position = Vector2(225, 477)
 scale = Vector2(1.08325, 0.892842)
 script = ExtResource("1_8ffim")
 
@@ -99,8 +99,7 @@ volume_db = -4.165
 position = Vector2(-0.175201, -1.52393)
 scale = Vector2(0.818705, 1.35311)
 sprite_frames = ExtResource("5_oovug")
-animation = &"run"
-frame_progress = 0.854003
+animation = &"jump_start"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
 position = Vector2(-0.175186, -1.52393)
@@ -203,10 +202,10 @@ motion_offset = Vector2(0, -200)
 
 [node name="TextureRect" type="TextureRect" parent="ParallaxBackground/ParallaxLayer4"]
 z_index = -2
-offset_left = 16.0
-offset_top = 8.0
-offset_right = 1168.0
-offset_bottom = 1096.0
+offset_left = 15.0
+offset_top = 44.0
+offset_right = 1167.0
+offset_bottom = 1132.0
 texture = ExtResource("12_8i23i")
 metadata/_edit_use_anchors_ = true
 
@@ -220,9 +219,9 @@ rotation = -0.000957088
 polygon = PackedVector2Array(24, 12, 40, -5, 92, -6, 97, 16, 123, 21, 137, -3, 158, -2, 173, 15, 194, 12, 265, -15, 280, 11, 322, 9, 393, 42, 428, -16, 437, -18, 467, 20, 494, 35, 508, 33, 516, 48, 541, 23, 577.967, 34.5532, 580, 103, 23, 92)
 
 [node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="Deathzone"]
-position = Vector2(136, 384)
+position = Vector2(160, 391)
 rotation = -0.00191418
-polygon = PackedVector2Array(24, 12, 40, -5, 92, -6, 97, 16, 123, 21, 146.073, -37.7205, 249.135, -70.5233, 268.097, -50.4869, 305.164, -85.416, 317.151, -78.3931, 338.074, -38.3529, 369.063, -32.2936, 382.07, -36.2687, 428, -16, 708.083, -42.6447, 964.119, -61.1546, 762.98, 11.4605, 768.92, 42.4719, 815.888, 59.5619, 828.794, 108.587, 23, 92)
+polygon = PackedVector2Array(24, 12, 40, -5, 92, -6, 97, 16, 123, 21, 146.073, -37.7205, 249.135, -70.5233, 268.097, -50.4869, 305.164, -85.416, 317.151, -78.3931, 338.074, -38.3529, 369.063, -32.2936, 382.07, -36.2687, 428, -16, 708.083, -42.6447, 964.119, -61.1546, 1400.1, -50.32, 1406.81, 99.6932, 953.801, 104.826, 828.794, 108.587, 23, 92)
 
 [node name="Pause" type="CanvasLayer" parent="."]
 layer = 2
@@ -236,6 +235,7 @@ offset_right = 40.0
 offset_bottom = 40.0
 
 [node name="Button" type="Button" parent="Pause/Control"]
+layout_mode = 0
 offset_left = 485.845
 offset_top = 221.0
 offset_right = 635.845
@@ -249,6 +249,7 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_pjppf")
 text = "Resume"
 
 [node name="Button2" type="Button" parent="Pause/Control"]
+layout_mode = 0
 offset_left = 483.0
 offset_top = 348.791
 offset_right = 633.0
@@ -262,6 +263,7 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_pjppf")
 text = "Quit"
 
 [node name="Button3" type="Button" parent="Pause/Control"]
+layout_mode = 0
 offset_left = 484.422
 offset_top = 285.613
 offset_right = 634.422
