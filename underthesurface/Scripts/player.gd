@@ -24,7 +24,7 @@ const DASH_COOLDOWN = 0.8
 # --- GRAPPLE ---
 const GRAPPLE_LENGTH = 400
 const AUTO_RELEASE_ANGLE = 135.0
-const SWING_DAMPING = 0.995   # lower = loses energy faster
+const SWING_DAMPING = 0.995
 
 # =========================
 # VARIABLES
@@ -48,18 +48,26 @@ var swing_angle = 0.0
 var angular_velocity = 0.0
 var swing_start_angle = 0.0
 
+var was_on_floor = false
+
+
 func die():
+	$AnimatedSprite2D.play("death")
 	$AudioStreamPlayer2D.play()
 	global_position = Vector2(330,200)
 
+
 # =========================
 func _physics_process(delta):
+
+	was_on_floor = is_on_floor()
 
 	# ---------------------------------
 	# SWING MODE
 	# ---------------------------------
 	if is_swinging:
 		_process_swing(delta)
+		_update_animation()
 		return
 
 	# ---------------------------------
@@ -69,10 +77,9 @@ func _physics_process(delta):
 		dash_cooldown_timer -= delta
 
 	# ---------------------------------
-	# GRAPPLE START (mouse aimed)
+	# GRAPPLE START
 	# ---------------------------------
-	if Input.is_action_just_pressed("move_grapple") \
-	and not is_swinging:
+	if Input.is_action_just_pressed("move_grapple") and not is_swinging:
 		_start_grapple()
 
 	# ---------------------------------
@@ -91,10 +98,10 @@ func _physics_process(delta):
 
 	if not is_dashing:
 		velocity.x = dir * SPEED
-		if is_on_floor():
-			$AnimatedSprite2D.play("run")
-		if dir == -1:
-			$AnimatedSprite2D.flip_h
+		if dir < 0:
+			$AnimatedSprite2D.flip_h = true
+		elif dir > 0:
+			$AnimatedSprite2D.flip_h = false
 
 	# ---------------------------------
 	# JUMP
@@ -110,8 +117,7 @@ func _physics_process(delta):
 	# ---------------------------------
 	# DASH
 	# ---------------------------------
-	if Input.is_action_just_pressed("move_dash") \
-	and dash_cooldown_timer <= 0:
+	if Input.is_action_just_pressed("move_dash") and dash_cooldown_timer <= 0:
 		_start_dash()
 
 	if is_dashing:
@@ -124,17 +130,26 @@ func _physics_process(delta):
 	move_and_slide()
 
 	# ---------------------------------
+	# LANDING ANIMATION
+	# ---------------------------------
+	if is_on_floor() and not was_on_floor:
+		$AnimatedSprite2D.play("jump_land")
+
+	# ---------------------------------
 	# RESET ON GROUND
 	# ---------------------------------
 	if is_on_floor():
 		has_double_jumped = false
 		is_dashing = false
 
+	_update_animation()
+
 
 # =========================
 # JUMP
 # =========================
 func _start_jump():
+	$AnimatedSprite2D.play("jump_start")
 	velocity.y = JUMP_FORCE
 	is_jumping = true
 	jump_hold_timer = MAX_JUMP_HOLD_TIME
@@ -142,6 +157,7 @@ func _start_jump():
 
 
 func _start_double_jump():
+	$AnimatedSprite2D.play("jump_start")
 	velocity.y = DBL_JUMP_FORCE
 	is_jumping = true
 	has_double_jumped = true
@@ -150,14 +166,12 @@ func _start_double_jump():
 
 
 func _handle_jump_hold(delta):
-
 	if not Input.is_action_pressed("move_jump"):
 		is_jumping = false
 		return
 
 	if jump_hold_timer > 0:
 		$Jump.play()
-		
 		velocity.y += JUMP_HOLD_FORCE * delta
 		jump_hold_timer -= delta
 
@@ -173,6 +187,7 @@ func _handle_jump_hold(delta):
 # DASH
 # =========================
 func _start_dash():
+	$AnimatedSprite2D.play("jump_start")
 	is_dashing = true
 	dash_timer = DASH_TIME
 	dash_cooldown_timer = DASH_COOLDOWN
@@ -183,8 +198,6 @@ func _start_dash():
 # =========================
 func _start_grapple():
 
-	print("Trying grapple")
-
 	var space = get_world_2d().direct_space_state
 	var from = global_position + Vector2(0, -4)
 
@@ -192,13 +205,11 @@ func _start_grapple():
 	var raw_dir = mouse_pos - from
 
 	if raw_dir.length() < 5:
-		print("Too close to player")
 		return
 
 	var direction = raw_dir.normalized()
 	var to = from + direction * GRAPPLE_LENGTH
 
-	# DEBUG ASSIGNMENTS
 	debug_from = from
 	debug_to = to
 	queue_redraw()
@@ -210,12 +221,9 @@ func _start_grapple():
 	var result = space.intersect_ray(query)
 
 	if result:
-		print("HIT!")
 		grapple_point = result.position
 		swing_radius = (global_position - grapple_point).length()
 		is_swinging = true
-	else:
-		print("No hit")
 
 
 # =========================
@@ -223,69 +231,68 @@ func _start_grapple():
 # =========================
 func _process_swing(delta):
 
-	# -------------------------
-	# Get rope info
-	# -------------------------
 	var rope_vec = global_position - grapple_point
 	var dist = rope_vec.length()
-
 	if dist == 0:
 		return
 
 	var rope_dir = rope_vec / dist
 
-	# -------------------------
-	# Apply gravity
-	# -------------------------
 	velocity.y += GRAVITY * delta
 
-	# -------------------------
-	# Remove radial velocity
-	# -------------------------
 	var radial_velocity = velocity.dot(rope_dir)
 	velocity -= rope_dir * radial_velocity
 
-	# -------------------------
-	# Move with collision FIRST
-	# -------------------------
 	move_and_slide()
 
-	# -------------------------
-	# Recalculate after move
-	# -------------------------
 	rope_vec = global_position - grapple_point
 	dist = rope_vec.length()
-
 	if dist == 0:
 		return
 
 	rope_dir = rope_vec / dist
 
-	# -------------------------
-	# Enforce rope length AFTER move
-	# -------------------------
 	if dist > swing_radius:
 		global_position = grapple_point + rope_dir * swing_radius
-
-		# Remove radial velocity AGAIN after snap
 		radial_velocity = velocity.dot(rope_dir)
 		velocity -= rope_dir * radial_velocity
 
-	# -------------------------
-	# Manual release
-	# -------------------------
 	if Input.is_action_just_pressed("move_jump"):
 		_release_swing()
+
 
 func _release_swing():
 	is_swinging = false
 	has_double_jumped = true
-	# momentum already preserved in velocity
-	
+
+
+# =========================
+# ANIMATION STATE MACHINE
+# =========================
+func _update_animation():
+
+	if is_swinging:
+		$AnimatedSprite2D.play("jump_start")
+		return
+
+	if is_dashing:
+		$AnimatedSprite2D.play("jump_start")
+		return
+
+	if not is_on_floor():
+		return  # jump_start stays until landing
+
+	var dir = Input.get_axis("move_left", "move_right")
+
+	if dir != 0:
+		$AnimatedSprite2D.play("run")
+	else:
+		$AnimatedSprite2D.play("idle")
+
+
+# =========================
+# DEBUG DRAW
+# =========================
 func _draw():
 	draw_line(to_local(debug_from), to_local(debug_to), Color.YELLOW, 2)
 	draw_circle(to_local(grapple_point), 4, Color.RED)
-
-
-func _on_winzone_area_entered(area: Area2D) -> void:
-	pass # Replace with function body.
