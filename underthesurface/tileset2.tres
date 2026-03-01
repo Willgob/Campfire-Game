@@ -1,4 +1,4 @@
-[gd_resource type="TileSet" load_steps=7 format=3 uid="uid://ck3dm7hg4u133"]
+[gd_resource type="TileSet" format=3 uid="uid://ck3dm7hg4u133"]
 
 [ext_resource type="Texture2D" uid="uid://1hggjbclksjl" path="res://Cave Tileset Pack/PNG files/CaveBG.png" id="1_xn22v"]
 [ext_resource type="Texture2D" uid="uid://c87umwf1cstn8" path="res://Tileset - High Forest/Assets/Interior-01.png" id="2_g3av3"]
