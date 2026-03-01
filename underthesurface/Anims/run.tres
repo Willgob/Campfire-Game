@@ -1,4 +1,4 @@
-[gd_resource type="SpriteFrames" load_steps=8 format=3 uid="uid://begj54j54rbsd"]
+[gd_resource type="SpriteFrames" load_steps=19 format=3 uid="uid://begj54j54rbsd"]
 
 [ext_resource type="Texture2D" uid="uid://cprtgk5p14b5d" path="res://Character/Sprite/run-01.png" id="1_utjk2"]
 [ext_resource type="Texture2D" uid="uid://d3ulv5m2ff4yk" path="res://Character/Sprite/run-02.png" id="2_krv12"]
@@ -7,9 +7,68 @@
 [ext_resource type="Texture2D" uid="uid://blkyt51sw21ga" path="res://Character/Sprite/run-05.png" id="5_bcikl"]
 [ext_resource type="Texture2D" uid="uid://chy41hrco6yh8" path="res://Character/Sprite/run-06.png" id="6_gg57p"]
 [ext_resource type="Texture2D" uid="uid://bo8e3f7rrm543" path="res://Character/Sprite/run-07.png" id="7_s85tx"]
+[ext_resource type="Texture2D" uid="uid://cgddwo4drjwwb" path="res://Character/Sprite/idle-01.png" id="13_dtifs"]
+[ext_resource type="Texture2D" uid="uid://c0o78ugk6y8vp" path="res://Character/Sprite/idle-02.png" id="14_itgkt"]
+[ext_resource type="Texture2D" uid="uid://big58wslwtpj1" path="res://Character/Sprite/idle-03.png" id="15_sepe4"]
+[ext_resource type="Texture2D" uid="uid://cmg7ykfwdbjhs" path="res://Character/Sprite/idle-04.png" id="16_n0bi4"]
+[ext_resource type="Texture2D" uid="uid://tafg7vvcd68j" path="res://Character/Sprite/idle-05.png" id="17_2bfk0"]
+[ext_resource type="Texture2D" uid="uid://c8rwnqn7b5se3" path="res://Character/Sprite/idle-06.png" id="18_rjti5"]
+[ext_resource type="Texture2D" uid="uid://b1ajp72xa0rb3" path="res://Character/Sprite/jump-landing-01.png" id="19_hki3m"]
+[ext_resource type="Texture2D" uid="uid://focxmj38gbg0" path="res://Character/Sprite/jump-landing-02.png" id="20_uqfmc"]
+[ext_resource type="Texture2D" uid="uid://bah0pog8whtl8" path="res://Character/Sprite/jump-landing-03.png" id="21_byqhk"]
+[ext_resource type="Texture2D" uid="uid://d1n804sfqdurt" path="res://Character/Sprite/jump-01.png" id="22_ma660"]
+[ext_resource type="Texture2D" uid="uid://b7krss6ka6f7l" path="res://Character/Sprite/jump-02.png" id="23_vkoai"]
 
 [resource]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("13_dtifs")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_itgkt")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_sepe4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16_n0bi4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("17_2bfk0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("18_rjti5")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("19_hki3m")
+}, {
+"duration": 1.0,
+"texture": ExtResource("20_uqfmc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("21_byqhk")
+}],
+"loop": true,
+"name": &"jump_land",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("22_ma660")
+}, {
+"duration": 1.0,
+"texture": ExtResource("23_vkoai")
+}],
+"loop": false,
+"name": &"jump_start",
+"speed": 5.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": ExtResource("1_utjk2")
